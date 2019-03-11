@@ -1,0 +1,28 @@
+﻿#postWrapper {
+    text-align: center;
+}
+
+#postOuterContainer, #postInnerContainer {
+    padding: 10px;
+    border: 3px solid black;
+    border-radius: 25px;
+}
+
+#postOuterContainer {
+    background-color: #4469B0;
+    display: inline-block;
+    margin: 10px;
+    width: 50%;
+}
+
+#postInnerContainer {
+    background-color: #FFFFFF;
+}
+
+.btn {
+    float: right;
+}
+
+#postUser, #postMessage {
+    font-size: 150%;
+}

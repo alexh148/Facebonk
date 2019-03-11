@@ -1,0 +1,40 @@
+﻿#eachPost, #innerPost, #edit, #like {
+    border-radius: 25px;
+}
+
+#eachPost, #innerPost {
+    border: 3px solid black;
+    padding: 10px;
+}
+
+#header {
+    text-align: center;
+    font-size: 300%;
+}
+
+#eachPost {
+    background-color: #4469B0;
+    display: inline-block;
+    margin: 10px;
+}
+
+#innerPost {
+    background-color: #FFFFFF;
+    max-width: 50ch;
+}
+
+#userFeed {
+    text-align: center;
+}
+
+#postedAt, #edit {
+    float: right;
+}
+
+#postedAt {
+    text-decoration: underline;
+}
+
+#edit {
+    margin-right: 10px;
+}

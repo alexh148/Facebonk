@@ -1,0 +1,22 @@
+﻿#friendWrapper {
+    margin-top: 0px;
+    float: right;
+    border: 3px solid black;
+    height: 100vh;
+    max-width: 15ch;
+    background-color: #486DAC;
+    border-radius: 10px;
+}
+
+#friendName, #friendStatus, #friendHeader {
+    text-align: center;
+    text-decoration: underline;
+}
+
+#friendName {
+    margin: 0px;
+    text-decoration: bold;
+}
+
+#friendStatus {
+}
