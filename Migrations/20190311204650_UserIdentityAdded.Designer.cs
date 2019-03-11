@@ -3,15 +3,17 @@ using System;
 using Facebonk.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Facebonk.Migrations
 {
     [DbContext(typeof(FacebonkContext))]
-    partial class FacebonkContextModelSnapshot : ModelSnapshot
+    [Migration("20190311204650_UserIdentityAdded")]
+    partial class UserIdentityAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

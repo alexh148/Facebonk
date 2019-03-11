@@ -28,6 +28,8 @@ namespace Facebonk.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Posts");
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }
