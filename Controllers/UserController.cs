@@ -25,7 +25,7 @@ namespace Facebonk.Controllers
             return _context.Users.ToList();
         }
 
-        [HttpGet("{id}", Name = "GetUser")]
+        [HttpGet("{id:int}", Name = "GetUserId")]
         public ActionResult<User> GetById(long id)
         {
             var user = _context.Users.Find(id);
@@ -36,13 +36,24 @@ namespace Facebonk.Controllers
             return user;
         }
 
+        [HttpGet("{email}", Name = "GetUserEmail")]
+        public ActionResult<User> GetByEmail(string email)
+        {
+            User myUser = _context.Users.SingleOrDefault(User => User.Email == email);
+            if (myUser == null)
+            {
+                return NotFound();
+            }
+            return myUser;
+        }
+
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetById), new { id = user.Id }, user);
+            return CreatedAtAction(nameof(GetByEmail), new { email = user.Email }, user);
         }
 
     }

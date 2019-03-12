@@ -4,6 +4,22 @@ import FacebookLogin from "react-facebook-login";
 import { Redirect } from "react-router-dom";
 import "./Login.css";
 
+function newUserCheck(email) {
+  console.log(`4th: Start Email: ${email}`);
+  fetch(`/api/FacebonkUser/${email}`)
+    .then(response => response.json())
+    .then(users => {
+      console.log(`5th: ${users[0]}`);
+      if (users[0]) {
+        console.log("6th: newUserCheck False");
+        return false;
+      } else {
+        console.log("6th: newUserCheck True");
+        return true;
+      }
+    });
+}
+
 export class Login extends Component {
   constructor(props) {
     super(props);
@@ -30,28 +46,35 @@ export class Login extends Component {
     }
     if (type === "google" && res.w3.U3) {
       // From response set JSON for Database Query
+      let sanitizedEmail = res.w3.U3;
+      sanitizedEmail = sanitizedEmail.replace(/\./g, "-2e5");
+      console.log(`2nd: ${sanitizedEmail}`);
       data = {
         name: res.w3.ig,
         provider: type,
-        email: res.w3.U3,
+        email: sanitizedEmail,
         provider_id: res.El,
         token: res.Zi.access_token,
         provider_pic: res.w3.Paa
       };
     }
-    console.log(data);
+    console.log(`3rd: ${data}`);
 
-    if (data) {
+    if (newUserCheck(data.email)) {
       // Post to Database
-      fetch("/api/FacebonkUser", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      }).then(response => {
+        fetch("/api/FacebonkUser", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        }
+      ).then(response => {
         // Set Redirect to True
+        console.log("7th: New User Added");
         this.setState({ redirect: true });
       });
     } else {
+      console.log("7th: User Already Added");
+      this.setState({ redirect: true });
     }
   }
 
@@ -70,8 +93,7 @@ export class Login extends Component {
 
     // Receive reponse from Google
     const responseGoogle = response => {
-      console.log("google console");
-      console.log(response);
+      console.log("1st google console");
       // Forward information to Signup Method
       this.signup(response, "google");
     };
@@ -87,7 +109,7 @@ export class Login extends Component {
         <br />
         <br />
         <GoogleLogin
-          clientId="Your Google ID"
+          clientId="478373276781-nmt6nais5n44vnu8er2aei1ldvtfd7fv.apps.googleusercontent.com"
           buttonText="Login with Google"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
