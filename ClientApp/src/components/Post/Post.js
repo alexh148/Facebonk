@@ -12,7 +12,7 @@ export class Post extends Component {
   handleSubmit(event) {
     event.preventDefault();
     var data = {
-      user: "Default User",
+      user: this.props.userName,
       message: this.state.message,
       posted_At: new Date().toLocaleString()
     };
@@ -28,7 +28,10 @@ export class Post extends Component {
   logChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+
+
   render() {
+console.log(`In Post: ${this.props.userName}`);
     return (
       <div id="postWrapper">
         <h1 id="header">Post</h1>

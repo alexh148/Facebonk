@@ -8,7 +8,9 @@ export class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirect: false
+      redirect: false,
+      userEmail: "HOWDY HO!",
+      userName: "OH YEAH!"
     };
     this.signup = this.signup.bind(this);
   }
@@ -37,7 +39,13 @@ export class Login extends Component {
           .then(users => {
             if (users.email) {
               console.log("User Exists");
-              this.setState({ redirect: true });
+              console.log(users.email);
+              console.log(users.name);
+              this.setState({
+                userEmail: users.email,
+                userName: users.name,
+                redirect: true
+              });
             }
           })
           .then(users => {
@@ -49,7 +57,11 @@ export class Login extends Component {
               }).then(response => {
                 // Set Redirect to True
                 console.log("New User Added");
-                this.setState({ redirect: true });
+                this.setState({
+                  userEmail: data.email,
+                  userName: data.name,
+                  redirect: true
+                });
               });
             } else {
             }
@@ -60,7 +72,17 @@ export class Login extends Component {
 
   render() {
     if (this.state.redirect === true || sessionStorage.getItem("userData")) {
-      return <Redirect to={"/home"} />;
+      return (
+        <Redirect
+          to={{
+            pathname: "/home",
+            state: {
+              userEmail: this.state.userEmail,
+              userName: this.state.userName
+            }
+          }}
+        />
+      );
     }
 
     // Receive reponse from Google
