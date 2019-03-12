@@ -27,18 +27,26 @@ export class Feed extends Component {
       <div>
         <h1 id="header">Feed</h1>
         {posts.map(eachPost => {
+        
+          var prettyDate = eachPost.posted_At
+            var parts = prettyDate.slice(0, -1).split('T');
+            var datey = parts[0].slice(5, 7) + "/" + parts[0].slice(8, 10) + "/" + parts[0].slice(0, 4);
+            var timey = parts[1].slice(0, 5);
+          console.log(parts)
+
           return (
             <div id="eachPost">
               <div id id="innerPost">
               <h1 id="userFeed">{eachPost.user}</h1>
               <p id="message">{eachPost.message}</p>
               <div>
-              <p id="postedAt">Posted at: {eachPost.posted_At}</p>
-            <button id="like">Like</button>
+                
+                <p id="postedAt">Posted at: {timey} on {datey} </p>
+                <button id="like">Like</button>
                 <button id="edit">Edit</button>
+                </div>
+                </div>
             </div>
-</div>
-</div>
           );
         })}
       </div>
