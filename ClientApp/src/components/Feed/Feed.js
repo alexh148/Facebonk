@@ -32,8 +32,6 @@ export class Feed extends Component {
             var parts = prettyDate.slice(0, -1).split('T');
             var datey = parts[0].slice(5, 7) + "/" + parts[0].slice(8, 10) + "/" + parts[0].slice(0, 4);
             var timey = parts[1].slice(0, 5);
-          console.log(parts)
-
           return (
             <div id="eachPost">
               <div id id="innerPost">
