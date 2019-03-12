@@ -27,7 +27,6 @@ export class Post extends Component {
 
   logChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    console.log({ [e.target.name]: e.target.value });
   }
   render() {
     return (
