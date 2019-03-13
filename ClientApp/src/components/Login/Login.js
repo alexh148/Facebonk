@@ -1,6 +1,5 @@
 ﻿import React, { Component } from "react";
 import GoogleLogin from "react-google-login";
-import FacebookLogin from "react-facebook-login";
 import { Redirect } from "react-router-dom";
 import "./Login.css";
 
@@ -8,20 +7,15 @@ export class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirect: false,
-      userEmail: "HOWDY HO!",
-      userName: "OH YEAH!"
+      redirect: false
     };
-    this.signup = this.signup.bind(this);
+    this.sortData = this.sortData.bind(this);
+    this.getOrAddUser = this.getOrAddUser.bind(this);
   }
 
-  // Receive Google response and "Google" type.
-  signup(res, type) {
+  sortData(res, type) {
     let data;
-    // Set Data
     if (type === "google" && res.w3.U3) {
-      // From response set JSON for Database Query
-      // From response set JSON for Database Query
       let sanitizedEmail = res.w3.U3;
       sanitizedEmail = sanitizedEmail.replace(/\./g, "-2e5");
       data = {
@@ -32,65 +26,48 @@ export class Login extends Component {
         token: res.Zi.access_token,
         provider_pic: res.w3.Paa
       };
+    }
+    return data;
+  }
 
-      if (data) {
-        fetch(`/api/FacebonkUser/${data.email}`)
-          .then(response => response.json())
-          .then(users => {
-            if (users.email) {
-              console.log("User Exists");
-              console.log(users.email);
-              console.log(users.name);
-              this.setState({
-                userEmail: users.email,
-                userName: users.name,
-                redirect: true
-              });
-            }
-          })
-          .then(users => {
-            if (data && this.state.redirect === false) {
-              fetch("/api/FacebonkUser", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-              }).then(response => {
-                // Set Redirect to True
-                console.log("New User Added");
-                this.setState({
-                  userEmail: data.email,
-                  userName: data.name,
-                  redirect: true
-                });
-              });
-            } else {
-            }
-          });
-      }
+  getOrAddUser(data) {
+    if (data) {
+      fetch(`/api/FacebonkUser/${data.email}`)
+        .then(response => response.json())
+        .then(users => {
+          // If data exists, gets and stores data locally
+          if (users.email) {
+            sessionStorage.setItem("userEmail", users.email);
+            sessionStorage.setItem("userName", users.name);
+            this.setState({ redirect: true });
+          }
+          // Else, posts to DB and stores data locally.
+          else {
+            fetch("/api/FacebonkUser", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data)
+            }).then(response => {
+              sessionStorage.setItem("userEmail", data.email);
+              sessionStorage.setItem("userName", data.name);
+              this.setState({ redirect: true });
+            });
+          }
+        });
     }
   }
 
   render() {
-    if (this.state.redirect === true || sessionStorage.getItem("userData")) {
-      return (
-        <Redirect
-          to={{
-            pathname: "/home",
-            state: {
-              userEmail: this.state.userEmail,
-              userName: this.state.userName
-            }
-          }}
-        />
-      );
+    if (this.state.redirect === true) {
+      return <Redirect to={"/home"} />;
     }
 
     // Receive reponse from Google
     const responseGoogle = response => {
       console.log("google console");
       console.log(response);
-      // Forward information to Signup Method
-      this.signup(response, "google");
+      let sortedData = this.sortData(response, "google");
+      this.getOrAddUser(sortedData);
     };
 
     return (

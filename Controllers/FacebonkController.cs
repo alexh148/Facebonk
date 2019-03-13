@@ -23,7 +23,7 @@ namespace Facebonk.Controllers
         [HttpGet]
         public ActionResult<List<Post>> GetAll()
         {
-            return _context.Posts.ToList();
+            return _context.Posts.OrderByDescending(i => i.Posted_At).ToList();
         }
 
         [HttpGet("{id}", Name = "GetPost")]

@@ -11,7 +11,6 @@ export class Layout extends Component {
     return (
       <div>
         <NavMenu />
-        <FriendsList/>
         <Container>
           {this.props.children}
         </Container>

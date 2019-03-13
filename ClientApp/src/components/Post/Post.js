@@ -22,9 +22,9 @@ export class Post extends Component {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
-    }).then(response => response);
+    }).then(response => response)
   }
-
+  
   logChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
