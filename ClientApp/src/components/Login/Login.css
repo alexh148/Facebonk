@@ -1,2 +1,13 @@
-﻿body {
+﻿#loginContainer{
+    background-color: orange;
+    display: inline-block;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    margin: 0px;
+}
+
+#loginHeader1 {
+    text-size: 200%;
+    font-family: 'Lato', sans-serif;
 }
