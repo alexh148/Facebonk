@@ -22,7 +22,7 @@ export class Home extends Component {
     
     return (
       <div>
-        <h1>Welcome to Facebonk, {this.state.userName}</h1>
+        <h1>Welcome to Facebonk, {this.state.userName} </h1>
         <div>
           <Post userName={this.state.userName} />
           <Feed />

@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System;
 using Facebonk.Models;
 
 namespace Facebonk.Controllers
@@ -41,12 +40,9 @@ namespace Facebonk.Controllers
         public async Task<ActionResult<Post>> PostPost(Post post)
         {
             _context.Posts.Add(post);
-
             await _context.SaveChangesAsync();
-
 
             return CreatedAtAction(nameof(GetById), new { id = post.Id }, post);
         }
     }
-
 }
