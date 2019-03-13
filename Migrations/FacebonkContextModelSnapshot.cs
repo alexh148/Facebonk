@@ -24,6 +24,8 @@ namespace Facebonk.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("Likes");
+
                     b.Property<string>("Message");
 
                     b.Property<DateTime>("Posted_At");
