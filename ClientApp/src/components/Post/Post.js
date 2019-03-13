@@ -24,7 +24,7 @@ export class Post extends Component {
       body: JSON.stringify(data)
     }).then(response => response)
   }
-
+  
   logChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }

@@ -16,7 +16,7 @@ export class Home extends Component {
 
   render() {
     console.log(`State Name: ${this.state.userName}`);
-    console.log(`State Email: ${this.state.userName}`);
+    console.log(`State Email: ${this.state.userEmail}`);
     console.log(`Storage Name: ${sessionStorage.getItem('userName')}`);
     console.log(`Storage Email: ${sessionStorage.getItem('userEmail')}`);
     

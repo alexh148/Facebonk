@@ -1,6 +1,5 @@
 ﻿import React, { Component } from "react";
 import GoogleLogin from "react-google-login";
-import FacebookLogin from "react-facebook-login";
 import { Redirect } from "react-router-dom";
 import "./Login.css";
 
@@ -8,16 +7,14 @@ export class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirect: false,
-      userEmail: "HOWDY HO!",
-      userName: "OH YEAH!"
+      redirect: false
     };
-    this.signup = this.signup.bind(this);
+    this.sortData = this.sortData.bind(this);
+    this.getOrAddUser = this.getOrAddUser.bind(this);
   }
 
-  signup(res, type) {
+  sortData(res, type) {
     let data;
-
     if (type === "google" && res.w3.U3) {
       let sanitizedEmail = res.w3.U3;
       sanitizedEmail = sanitizedEmail.replace(/\./g, "-2e5");
@@ -29,32 +26,34 @@ export class Login extends Component {
         token: res.Zi.access_token,
         provider_pic: res.w3.Paa
       };
+    }
+    return data;
+  }
 
-      // Check if Data Exists in DB
-      if (data) {
-        fetch(`/api/FacebonkUser/${data.email}`)
-          .then(response => response.json())
-          .then(users => {
-            // If data exists stores data locally
-            if (users.email) {
+  getOrAddUser(data) {
+    if (data) {
+      fetch(`/api/FacebonkUser/${data.email}`)
+        .then(response => response.json())
+        .then(users => {
+          // If data exists, gets and stores data locally
+          if (users.email) {
+            sessionStorage.setItem("userEmail", users.email);
+            sessionStorage.setItem("userName", users.name);
+            this.setState({ redirect: true });
+          }
+          // Else, posts to DB and stores data locally.
+          else {
+            fetch("/api/FacebonkUser", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data)
+            }).then(response => {
+              sessionStorage.setItem("userEmail", data.email);
+              sessionStorage.setItem("userName", data.name);
               this.setState({ redirect: true });
-              sessionStorage.setItem("userEmail", users.email);
-              sessionStorage.setItem("userName", users.name);
-            }
-            // Else creates new entry in DB, and stores data locally.
-            else {
-              fetch("/api/FacebonkUser", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-              }).then(response => {
-                this.setState({ redirect: true });
-                sessionStorage.setItem("userEmail", data.email);
-                sessionStorage.setItem("userName", data.name);
-              });
-            }
-          });
-      }
+            });
+          }
+        });
     }
   }
 
@@ -67,7 +66,8 @@ export class Login extends Component {
     const responseGoogle = response => {
       console.log("google console");
       console.log(response);
-      this.signup(response, "google");
+      let sortedData = this.sortData(response, "google");
+      this.getOrAddUser(sortedData);
     };
 
     return (
