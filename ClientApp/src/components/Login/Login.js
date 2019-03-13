@@ -71,7 +71,9 @@ export class Login extends Component {
     };
 
     return (
-      <div className="row body">
+      <div className="row body" id="loginContainer">
+        <h1 id="loginHeader1">Welcome to FaceBonk</h1>
+        <h2 id="loginHeader2">Login with you Google Account</h2>
         <GoogleLogin
           clientId="478373276781-nmt6nais5n44vnu8er2aei1ldvtfd7fv.apps.googleusercontent.com"
           buttonText="Login with Google"
