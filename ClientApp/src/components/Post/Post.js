@@ -14,7 +14,7 @@ export class Post extends Component {
     var data = {
       user: this.props.userName,
       message: this.state.message,
-      posted_At: new Date().toLocaleString()
+      posted_At: new Date()
     };
 
     console.log(data);
