@@ -15,13 +15,10 @@ export class Login extends Component {
     this.signup = this.signup.bind(this);
   }
 
-  // Receive Google response and "Google" type.
   signup(res, type) {
     let data;
-    // Set Data
+
     if (type === "google" && res.w3.U3) {
-      // From response set JSON for Database Query
-      // From response set JSON for Database Query
       let sanitizedEmail = res.w3.U3;
       sanitizedEmail = sanitizedEmail.replace(/\./g, "-2e5");
       data = {
@@ -33,37 +30,28 @@ export class Login extends Component {
         provider_pic: res.w3.Paa
       };
 
+      // Check if Data Exists in DB
       if (data) {
         fetch(`/api/FacebonkUser/${data.email}`)
           .then(response => response.json())
           .then(users => {
+            // If data exists stores data locally
             if (users.email) {
-              console.log("User Exists");
-              console.log(users.email);
-              console.log(users.name);
-              this.setState({
-                userEmail: users.email,
-                userName: users.name,
-                redirect: true
-              });
+              this.setState({ redirect: true });
+              sessionStorage.setItem("userEmail", users.email);
+              sessionStorage.setItem("userName", users.name);
             }
-          })
-          .then(users => {
-            if (data && this.state.redirect === false) {
+            // Else creates new entry in DB, and stores data locally.
+            else {
               fetch("/api/FacebonkUser", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
               }).then(response => {
-                // Set Redirect to True
-                console.log("New User Added");
-                this.setState({
-                  userEmail: data.email,
-                  userName: data.name,
-                  redirect: true
-                });
+                this.setState({ redirect: true });
+                sessionStorage.setItem("userEmail", data.email);
+                sessionStorage.setItem("userName", data.name);
               });
-            } else {
             }
           });
       }
@@ -71,25 +59,14 @@ export class Login extends Component {
   }
 
   render() {
-    if (this.state.redirect === true || sessionStorage.getItem("userData")) {
-      return (
-        <Redirect
-          to={{
-            pathname: "/home",
-            state: {
-              userEmail: this.state.userEmail,
-              userName: this.state.userName
-            }
-          }}
-        />
-      );
+    if (this.state.redirect === true) {
+      return <Redirect to={"/home"} />;
     }
 
     // Receive reponse from Google
     const responseGoogle = response => {
       console.log("google console");
       console.log(response);
-      // Forward information to Signup Method
       this.signup(response, "google");
     };
 

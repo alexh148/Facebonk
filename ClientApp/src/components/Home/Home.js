@@ -9,19 +9,17 @@ export class Home extends Component {
     super(props);
 
     this.state = {
-      userName: this.props.location.state.userName,
-      userEmail: this.props.location.state.userEmail
+      userName: sessionStorage.getItem('userName'),
+      userEmail: sessionStorage.getItem('userEmail')
     };
   }
 
   render() {
-    console.log(this.state.userName);
-    console.log(this.state.userEmail);
-    console.log(
-      `User Email from Login: ${this.props.location.state.userEmail}`
-    );
-    console.log(`User Name from Login: ${this.props.location.state.userName}`);
-
+    console.log(`State Name: ${this.state.userName}`);
+    console.log(`State Email: ${this.state.userName}`);
+    console.log(`Storage Name: ${sessionStorage.getItem('userName')}`);
+    console.log(`Storage Email: ${sessionStorage.getItem('userEmail')}`);
+    
     return (
       <div>
         <h1>Welcome to Facebonk, {this.state.userName}</h1>
