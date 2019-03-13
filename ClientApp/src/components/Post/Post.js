@@ -41,11 +41,11 @@ console.log(`In Post: ${this.props.userName}`);
               <div class="row form">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label id="postMessage" class="col-form-label">
+                    <label id="postMessage" className="col-form-label">
                       Message:
                     </label>
                     <textarea
-                      class="form-control col"
+                      className="form-control col"
                       id="messageArea"
                       placeholder="What's on your mind?"
                       rows="4"
