@@ -37,6 +37,8 @@
     <Folder Include="Models\" />
     <Folder Include="ClientApp\src\components\Layouts\" />
     <Folder Include="ClientApp\src\components\FullScreenPost\" />
+    <Folder Include="ClientApp\src\components\Comments\" />
+
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Controllers\HomeController.cs" />
