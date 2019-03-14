@@ -1,4 +1,5 @@
 ﻿import React, { Component } from "react";
+import { CommentBox } from "../Comments/CommentBox";
 import "./FullScreenPost.css";
 
 export class FullScreenPost extends Component {
@@ -17,11 +18,9 @@ export class FullScreenPost extends Component {
       .then(post => {
         this.setState({ post: post });
       });
-    console.log(this.state.post);
   }
 
   render() {
-    console.log(`In Post: ${this.props.userName}`);
     return (
       <div id="postWrapper">
         <h1 id="header">Post</h1>
@@ -29,14 +28,14 @@ export class FullScreenPost extends Component {
           <div id="postInnerContainer">
             <h1>{this.state.post.user} said...</h1>
             <form>
-              <div class="row form">
-                <div class="col-md-12">
-                  <div class="form-group">
+              <div className="row form">
+                <div className="col-md-12">
+                  <div className="form-group">
                     <label id="postMessage" className="col-form-label">
                       Message:
                     </label>
                     <textarea
-                      readonly
+                      readOnly
                       className="form-control col"
                       id="messageArea"
                       placeholder="What's on your mind?"
@@ -55,6 +54,7 @@ export class FullScreenPost extends Component {
             </form>
           </div>
         </div>
+        <CommentBox post={this.state.post} />
       </div>
     );
   }
