@@ -18,24 +18,26 @@ export class Likes extends Component {
     this.setState({ postLikes: likesCounter });
     console.log(`Likes after Increment: ${this.state.postLikes}`);
 
-
-     const data = {
+    const data = {
       id: this.state.postId,
       likes: likesCounter
     };
+
+    console.log(`Post ID: ${data.id}`);
+    console.log(`Post Likes: ${data.likes}`);
 
     fetch(`/api/Facebonk`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
-    });
+    }).then(response => response);
   }
 
   render() {
     return (
       <div>
         <button id="likeButton" onClick={this.incrementLikes}>
-           Like This Post! - {this.state.postLikes} Likes
+          Like This Post! - {this.state.postLikes} Likes
         </button>
       </div>
     );

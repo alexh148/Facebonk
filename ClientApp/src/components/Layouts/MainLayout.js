@@ -1,6 +1,5 @@
 ﻿import React, { Component } from 'react';
 import { Container } from 'reactstrap';
-import { FriendsList } from "../FriendsList/FriendsList";
 import { NavMenu } from '../NavMenu/NavMenu';
 
 

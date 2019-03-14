@@ -36,9 +36,9 @@ export class Post extends Component {
         <div id="postOuterContainer">
           <div id="postInnerContainer">
             <form onSubmit={this.handleSubmit} method="POST">
-              <div class="row form">
-                <div class="col-md-12">
-                  <div class="form-group">
+              <div className="row form">
+                <div className="col-md-12">
+                  <div className="form-group">
                     <label id="postMessage" className="col-form-label">
                       Message:
                     </label>
@@ -51,7 +51,7 @@ export class Post extends Component {
                       onChange={this.logChange}
                     />
                   </div>
-                  <input type="submit" value="Post!" id="postButton" class="btn btn-success" />
+                  <input type="submit" value="Post!" id="postButton" className="btn btn-success" />
                 </div>
               </div>
             </form>

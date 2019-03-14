@@ -45,7 +45,7 @@ export class Feed extends Component {
             parts[0].slice(0, 4);
           var timey = parts[1].slice(0, 5);
           return (
-            <div id="eachPost">
+            <div id="eachPost" key={eachPost.id}>
               <div id="innerPost">
                 <h1 id="userFeed">{eachPost.user} said... </h1>
                 <p id="message">{eachPost.message}</p>

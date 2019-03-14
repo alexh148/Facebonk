@@ -46,7 +46,7 @@ namespace Facebonk.Controllers
         }
 
         [HttpPatch]
-        public ActionResult PatchPost([FromBody] PostLikesPatchRequest request)
+        public async Task<ActionResult> PatchPost([FromBody] PostLikesPatchRequest request)
         {
             var post = _context.Posts.Find(request.Id);
 
@@ -54,12 +54,8 @@ namespace Facebonk.Controllers
             {
                 return NotFound();
             }
-            else
-            {
-                post.Likes = request.Likes;
-            }
-
-
+            post.Likes = request.Likes;
+            await _context.SaveChangesAsync();
             return Ok();
         }
     }
