@@ -9,9 +9,8 @@ export class CommentBox extends Component {
         this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
     }
     loadCommentsFromServer() {
-        const url = `/api/comment/${this.props.post.id}`;
         const xhr = new XMLHttpRequest();
-        xhr.open('get', url, true);
+        xhr.open('get', `/api/comment/${this.props.post.id}`, true);
         xhr.onload = () => {
             const data = JSON.parse(xhr.responseText);
             this.setState({ data: data });
@@ -43,8 +42,9 @@ export class CommentBox extends Component {
         return (
             <div className="commentBox">
                 <h1>Comments </h1>
-                <CommentList data={this.state.data} />
+                <h3>Add a new comment </h3>
                 <CommentForm onCommentSubmit={this.handleCommentSubmit} post={this.props.post} />
+                <CommentList data={this.state.data} />
             </div>
         );
     }
