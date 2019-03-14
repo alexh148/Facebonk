@@ -37,7 +37,7 @@ export class Login extends Component {
         .then(users => {
           // If data exists, gets and stores data locally
           if (users.email) {
-            sessionStorage.setItem("userEmail", users.email);
+            sessionStorage.setItem("userEmail", users.email.replace(/\-2e5/g, "."));
             sessionStorage.setItem("userName", users.name);
             this.setState({ redirect: true });
           }
@@ -48,7 +48,7 @@ export class Login extends Component {
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(data)
             }).then(response => {
-              sessionStorage.setItem("userEmail", data.email);
+              sessionStorage.setItem("userEmail", data.email.replace(/\-2e5/g, "."));
               sessionStorage.setItem("userName", data.name);
               this.setState({ redirect: true });
             });
@@ -71,8 +71,10 @@ export class Login extends Component {
     };
 
     return (
-      <div className="row body" id="loginContainer">
-        <h1 id="loginHeader1">FaceBonk</h1>
+      <div id="loginContainer">
+        <div id="loginHeaderContainer">
+        <h1 id="loginHeader">Facebonk</h1> 
+        </div>
         <GoogleLogin
           clientId="478373276781-nmt6nais5n44vnu8er2aei1ldvtfd7fv.apps.googleusercontent.com"
           buttonText="Login with Google"

@@ -31,7 +31,6 @@ export class Post extends Component {
 
 
   render() {
-console.log(`In Post: ${this.props.userName}`);
     return (
       <div id="postWrapper">
         <h1 id="header">Post</h1>

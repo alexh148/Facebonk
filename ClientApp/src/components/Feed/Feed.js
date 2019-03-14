@@ -52,19 +52,23 @@ export class Feed extends Component {
               <div id="innerPost">
                 <h1 id="userFeed">{eachPost.user} said... </h1>
                 <p id="message">{eachPost.message}</p>
+
                 <div>
                   <p id="postedAt">
                     Posted at: {timey} on {datey}{" "}
                   </p>
-                  <div id="likes_space">
-                    <p id="likes">Likes: {eachPost.likes}</p>
+                </div>
+
+                <div id="likes_space">
+                  <p id="likes">
+                    Likes: {eachPost.likes}{" "}
                     <button id="likeButton" onClick={doAThing}>
-                      Like This!
+                      Like This Post!
                     </button>
-                  </div>
-                  <button id="edite">Edit</button>
+                  </p>
+
                   <Link to={`/feed/${eachPost.id}`}>
-                    <button id="edit">FullScreenComment</button>
+                    <button id="comment">Comment</button>
                   </Link>
                 </div>
               </div>

@@ -21,20 +21,28 @@
 #innerPost {
     background-color: #FFFFFF;
     max-width: 50ch;
+    min-width: 50ch;
 }
 
 #userFeed {
     text-align: center;
 }
 
-#postedAt, #edit {
-    float: right;
-}
-
 #postedAt {
+    float: right;
+    font-size: 10px;
     text-decoration: underline;
 }
 
-#edit {
-    margin-right: 10px;
+#likes_space {
+    margin-left: 20px;
+    display: inline-block;
 }
+
+
+#message {
+    border: 3px solid rgba(72, 108, 181, .5);
+    padding: 8px;
+    border-radius: 25px;
+}
+
