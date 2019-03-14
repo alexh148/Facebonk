@@ -1,5 +1,7 @@
 ﻿import React, { Component } from "react";
 import { CommentBox } from "../Comments/CommentBox";
+import { MainLayout } from "../Layouts/MainLayout";
+
 import "./FullScreenPost.css";
 
 export class FullScreenPost extends Component {
@@ -22,39 +24,41 @@ export class FullScreenPost extends Component {
 
   render() {
     return (
-      <div id="postWrapper">
-        <h1 id="header">Post</h1>
-        <div id="postOuterContainer">
-          <div id="postInnerContainer">
-            <h1>{this.state.post.user} said...</h1>
-            <form>
-              <div className="row form">
-                <div className="col-md-12">
-                  <div className="form-group">
-                    <label id="postMessage" className="col-form-label">
-                      Message:
-                    </label>
-                    <textarea
-                      readOnly
-                      className="form-control col"
-                      id="messageArea"
-                      placeholder="What's on your mind?"
-                      rows="4"
-                      name="message"
-                      value={this.state.post.message}
-                    />
+      <MainLayout>
+        <div id="postWrapper">
+          <h1 id="header">Post</h1>
+          <div id="postOuterContainer">
+            <div id="postInnerContainer">
+              <h1>{this.state.post.user} said...</h1>
+              <form>
+                <div className="row form">
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <label id="postMessage" className="col-form-label">
+                        Message:
+                      </label>
+                      <textarea
+                        readOnly
+                        className="form-control col"
+                        id="messageArea"
+                        placeholder="What's on your mind?"
+                        rows="4"
+                        name="message"
+                        value={this.state.post.message}
+                      />
+                    </div>
+                    <p>
+                      Posted At:{" "}
+                      {new Date(this.state.post.posted_At).toLocaleString()}
+                    </p>
                   </div>
-                  <p>
-                    Posted At:{" "}
-                    {new Date(this.state.post.posted_At).toLocaleString()}
-                  </p>
                 </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
+          <CommentBox post={this.state.post} />
         </div>
-        <CommentBox post={this.state.post} />
-      </div>
+      </MainLayout>
     );
   }
 }

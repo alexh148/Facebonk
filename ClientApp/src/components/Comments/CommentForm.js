@@ -4,7 +4,9 @@ export class CommentForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          message: ''
+          message: '',
+      userName: sessionStorage.getItem("userName"),
+
         };
         this.handleMessageChange = this.handleMessageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -14,7 +16,7 @@ export class CommentForm extends Component {
     }
     handleSubmit(e) {
         e.preventDefault();
-        const author = this.props.post.user;
+        const author = this.state.userName;
         const message = this.state.message.trim();
         const postId = this.props.post.id;
         if (!message) {
