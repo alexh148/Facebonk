@@ -17,14 +17,13 @@ export class Post extends Component {
       posted_At: new Date()
     };
 
-    console.log(data);
     fetch("/api/Facebonk", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     }).then(response => response)
   }
-  
+
   logChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }

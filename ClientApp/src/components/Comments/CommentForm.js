@@ -3,26 +3,27 @@
 export class CommentForm extends Component {
     constructor(props) {
         super(props);
-        this.state = { author: '', text: '' };
+        this.state = { author: '', message: '' };
         this.handleAuthorChange = this.handleAuthorChange.bind(this);
-        this.handleTextChange = this.handleTextChange.bind(this);
+        this.handleMessageChange = this.handleMessageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleAuthorChange(e) {
         this.setState({ author: e.target.value });
     }
-    handleTextChange(e) {
-        this.setState({ text: e.target.value });
+    handleMessageChange(e) {
+        this.setState({ message: e.target.value });
     }
     handleSubmit(e) {
         e.preventDefault();
         const author = this.state.author.trim();
-        const text = this.state.text.trim();
-        if (!text || !author) {
+        const message = this.state.message.trim();
+        const postId = this.props.post.id;
+        if (!message || !author) {
             return;
         }
-        this.props.onCommentSubmit({ Author: author, Text: text });
-        this.setState({ author: '', text: '' });
+        this.props.onCommentSubmit({ Author: author, Message: message, PostId: postId });
+        this.setState({ author: '', message: '' });
     }
     render() {
         return (
@@ -36,8 +37,8 @@ export class CommentForm extends Component {
                 <input
                     type="text"
                     placeholder="Say something..."
-                    value={this.state.text}
-                    onChange={this.handleTextChange}
+                    value={this.state.message}
+                    onChange={this.handleMessageChange}
                 />
                 <input type="submit" value="Post" />
             </form>
