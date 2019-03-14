@@ -48,7 +48,6 @@ export class FullScreenPost extends Component {
                     Posted At:{" "}
                     {new Date(this.state.post.posted_At).toLocaleString()}
                   </p>
-                  <button type="button">Add Comment!</button>
                 </div>
               </div>
             </form>
