@@ -14,4 +14,3 @@ export class Comment extends Component {
       </div>
     );
   }
-}
