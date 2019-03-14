@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { Container } from 'reactstrap';
+import { FriendsList } from "../FriendsList/FriendsList";
 import { NavMenu } from '../NavMenu/NavMenu';
 
 
@@ -9,7 +10,8 @@ export class MainLayout extends Component {
   render () {
     return (
       <div>
-        <NavMenu />
+            <NavMenu />
+        
         <Container>
           {this.props.children}
         </Container>

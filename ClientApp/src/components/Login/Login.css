@@ -1,5 +1,6 @@
-﻿#loginContainer{
-    background-color: orange;
+﻿#loginContainer {
+    background: url(https://i.imgur.com/cTAf6g7.gif) no-repeat center center fixed;
+    background-size: cover;
     display: inline-block;
     width: 100%;
     height: 100vh;
@@ -8,6 +9,17 @@
 }
 
 #loginHeader1 {
-    text-size: 200%;
-    font-family: 'Lato', sans-serif;
+    margin-top: 75px;
+    font-size: 500%;
+
+}
+
+#loginHeader1, #loginHeader2 {
+    color: black;
+    font-family: 'Srisakdi', cursive;
+    text-shadow: 2px 2px 2px white;
+}
+
+#loginHeader2 {
+    margin-bottom: 25px;
 }
