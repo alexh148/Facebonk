@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route } from "react-router";
 import { Home } from "./components/Home/Home";
 import { Login } from "./components/Login/Login";
+import { FullScreenPost } from "./components/FullScreenPost/FullScreenPost";
 
 
 export default class App extends Component {
@@ -12,7 +13,8 @@ export default class App extends Component {
       <div>
         <Route exact path="/" component={Login} />
         <Route path="/home" component={Home} />
-      </div>
+        <Route path="/feed/:id" component={FullScreenPost} />
+     </div>
     );
   }
 }
