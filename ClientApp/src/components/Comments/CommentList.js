@@ -2,14 +2,12 @@
 import { Comment } from "./Comment";
 
 export class CommentList extends Component {
-    render() {
-        const commentNodes = this.props.data.map(comment => (
-            <Comment author={comment.author} key={comment.id}>
-                {comment.message}
-            </Comment>
-        ));
-        return (
-            <div className="commentList">{commentNodes}</div>
-        );
-    }
+  render() {
+    const commentNodes = this.props.data.map(comment => (
+      <Comment author={comment.author} key={comment.id}>
+        {comment.message}
+      </Comment>
+    ));
+    return <div className="commentList">{commentNodes}</div>;
+  }
 }

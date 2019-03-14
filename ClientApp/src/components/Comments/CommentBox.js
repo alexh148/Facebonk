@@ -41,10 +41,10 @@ export class CommentBox extends Component {
 
     render() {
         return (
-            <div className="commentBox">
+            <div className="eachPost">
                 <h1>Comments </h1>
-                <CommentList data={this.state.data} />
                 <CommentForm onCommentSubmit={this.handleCommentSubmit} post={this.props.post} />
+                <CommentList data={this.state.data} />
             </div>
         );
     }

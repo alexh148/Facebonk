@@ -40,7 +40,7 @@ export class CommentForm extends Component {
                     value={this.state.message}
                     onChange={this.handleMessageChange}
                 />
-                <input type="submit" value="Post" />
+                <input type="submit" value="Post" id="postComment" class="btn btn-success"/>
             </form>
         );
     }

@@ -51,7 +51,7 @@ export class Post extends Component {
                       onChange={this.logChange}
                     />
                   </div>
-                  <input type="submit" value="Post!" class="btn btn-success" />
+                  <input type="submit" value="Post!" id="postButton" class="btn btn-success" />
                 </div>
               </div>
             </form>
