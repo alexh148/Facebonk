@@ -1,5 +1,6 @@
 ﻿import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Likes } from "../Likes/Likes";
 import "./Feed.css";
 
 export class Feed extends Component {
@@ -34,10 +35,6 @@ export class Feed extends Component {
       <div>
         <h1 id="header">Feed</h1>
         {posts.map(eachPost => {
-          function doAThing() {
-            console.log(`liking post: ${eachPost.message}`);
-          }
-
           var prettyDate = eachPost.posted_At;
           var parts = prettyDate.slice(0, -1).split("T");
           var datey =
@@ -60,12 +57,7 @@ export class Feed extends Component {
                 </div>
 
                 <div id="likes_space">
-                  <p id="likes">
-                    Likes: {eachPost.likes}{" "}
-                    <button id="likeButton" onClick={doAThing}>
-                      Like This Post!
-                    </button>
-                  </p>
+                  <Likes thisPost={eachPost} />
 
                   <Link to={`/feed/${eachPost.id}`}>
                     <button id="comment">Comment</button>

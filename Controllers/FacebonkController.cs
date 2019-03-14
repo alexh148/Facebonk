@@ -44,5 +44,23 @@ namespace Facebonk.Controllers
 
             return CreatedAtAction(nameof(GetById), new { id = post.Id }, post);
         }
+
+        [HttpPatch]
+        public ActionResult PatchPost([FromBody] PostLikesPatchRequest request)
+        {
+            var post = _context.Posts.Find(request.Id);
+
+            if (post == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                post.Likes = request.Likes;
+            }
+
+
+            return Ok();
+        }
     }
 }
