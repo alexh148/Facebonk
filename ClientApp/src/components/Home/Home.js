@@ -3,6 +3,8 @@ import { MainLayout } from '../Layouts/MainLayout';
 import { Post } from "../Post/Post";
 import { Feed } from "../Feed/Feed";
 import { FriendsList } from "../FriendsList/FriendsList";
+import "./Home.css";
+
 
 export class Home extends Component {
   static displayName = Home.name;
@@ -23,7 +25,7 @@ export class Home extends Component {
 
     return (
       <MainLayout>
-        <h1>Welcome to Facebonk, {this.state.userName}</h1>
+        <h1 id ="homeHeader">Welcome to Facebonk, {this.state.userName}</h1>
         <div>
           <Post userName={this.state.userName} />
           <Feed />

@@ -11,7 +11,9 @@ export class NavMenu extends Component {
 
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.state = {
-      collapsed: true
+        collapsed: true,
+        userEmail: sessionStorage.getItem("userEmail")
+
     };
   }
 
@@ -26,7 +28,7 @@ export class NavMenu extends Component {
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white" light>
           <Container>
-            <NavbarBrand tag={Link} to="/">Facebonk</NavbarBrand>
+            <NavbarBrand tag={Link} to="/">Logout ({this.state.userEmail})</NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
               <ul className="navbar-nav flex-grow">
