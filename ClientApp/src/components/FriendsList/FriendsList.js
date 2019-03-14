@@ -56,9 +56,7 @@ export class FriendsList extends Component {
                 eachFriend.name}
                 <button
                   type="button"
-                  onClick={
-
-                  }
+             
                 >
                   Friend!
                 </button>
